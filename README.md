@@ -10,6 +10,6 @@ This course aims to teach us:
 - graph algortihms
 
 ## Assignment
-My Python Code for 2022 Spring Algorithm Course and [study notes](https://github.com/tinghe14/COURSE-2Algorithm/blob/main/Study%20Note.md) for better understand the materail  and build knowledge graph.
+My python code for 2022 spring Algorithm course and [study notes](https://github.com/tinghe14/COURSE-2Algorithm/blob/main/Study%20Note.md) for better understand the materail  and build knowledge graph.
 
 Coding Assignments Completed in Class:
