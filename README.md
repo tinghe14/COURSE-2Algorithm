@@ -12,4 +12,7 @@ This course aims to teach us:
 ## Assignment
 My python code for 2022 spring Algorithm course and [study notes](https://github.com/tinghe14/COURSE-2Algorithm/blob/main/Study%20Note.md) for better understand the materail  and build knowledge graph.
 
-Coding Assignments Completed in Class:
+Assignments Completed in Class:
+- Analysis of algorithms - time complexity
+  - finished date: Feb 8, 2022
+  - [latex]()
