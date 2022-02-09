@@ -15,4 +15,4 @@ My python code for 2022 spring Algorithm course and [study notes](https://github
 Assignments Completed in Class:
 - Analysis of algorithms - time complexity
   - finished date: Feb 8, 2022
-  - [latex]()
+  - [final latex](https://github.com/tinghe14/COURSE-2Algorithm/blob/main/Homework%201/algor-hw1-the14.pdf)
