@@ -1,0 +1,197 @@
+% --------------------------------------------------------------
+% This is all preamble stuff that you don't have to worry about.
+% Head down to where it says "Start here"
+% --------------------------------------------------------------
+ 
+\documentclass[12pt]{article}
+
+\usepackage{xcolor} 
+\usepackage[margin=1in]{geometry} 
+\usepackage{amsmath,amsthm,amssymb}
+ 
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+ 
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{reflection}[2][Reflection]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{proposition}[2][Proposition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+ 
+% includes/packages for algorithm styling
+\usepackage{subcaption}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\captionsetup[algorithm]{
+  labelfont = bf,
+  labelsep = period
+}
+ 
+\begin{document}
+ 
+% --------------------------------------------------------------
+%                         Start here
+% --------------------------------------------------------------
+ 
+%\renewcommand{\qedsymbol}{\filledbox}
+ 
+\title{Homework 1}%replace X with the appropriate number
+\author{Ting He\\ %replace with your name
+Foundations of Algorithms, Spring 2022} %if necessary, replace with your course title
+ 
+\maketitle
+ 
+\begin{proposition}{1} 
+\end{proposition}
+\setlength{\parindent}{0pt}
+\textbf{Problem Statement}: Describe the time complexity of linear search algorithm. Choose the tightest asymptotic representation and argue why that is the tightest bound \\
+\textbf{Assumptions}: $T(n)$ is the total time we needed for this linear search \\
+\textbf{Computations}: $\Theta$ is the most tightest asymptotic representation since from theorem 3.1 we have, for any 2 functions $f(n)$ and $g(n)$, we have $f(n) = \Theta(g(n))$ if and only if $f(n) = O(g(n))$ and $f(n) = \omega(g(n))$. The total tightest asymptotic running time can be written as:
+\begin{align*}
+    T(n) &= \Theta(1) + \sum_{t=1}^{n-1}\Theta(1)+\Theta(1) \\
+              &= \Theta(n^2)
+\end{align*}
+where the $\sum_{t=1}^{n-1}\Theta(1)$ comes from the step 4 and 5 in our algorithms, the while loop and its increment of i; while the other steps in our algorithms are all constant running time as $\Theta(1)$ \\
+\textbf{Conclusions}: $\Theta(n^2)$
+
+ 
+\begin{proposition}{2}
+\end{proposition}
+\setlength{\parindent}{0pt}
+\textbf{Problem Statement}:Analyze the following binary search algorithm. Assume the input A is a sorted list of elements; $x$ may or may not be in A. \\
+(a) describe the time complexity of binary search and choose the tightest asymptotic representation.
+(b) make one small change to the algorithm to improve its run time, and give the revised tightest asymptotic representation \\
+\textbf{Assumptions}: $T(n)$ is the total time we needed for this binary search\\
+\textbf{Computations}: \\
+(a) We can treat this binary search as a divide-and-conquer problem. We denoted that $n=len(A)$ and we are looking for place for $x$ to insert. The problem itself can divided into 2 sub-problem with $\Theta(1)$ running time to search whether $x < A[m]$ or $x > A[m]$.
+\begin{align*}
+    If \\
+    n &> 1, \\
+    T(n) &= T(\frac{n}{2}) + O(1) \\
+    If \\
+    n &= 1 \\
+    T(n) &= O(1)
+\end{align*}
+Based on master theorem,$T(n) = aT(n/b) + \Theta(n^k (log_2^n)^p)$, we know that $a = 1, b = 2, k=0, p=0$ in our case.
+\begin{align*}
+    a = b^k &= 1 \\
+    p = 0 > -1 \\
+    log_b(a) &= 0 \\
+    T(n) &= \Theta (n^0 log(n)) \\
+    & = \Theta(log(n))
+\end{align*} \\
+(b) 	    \begin{algorithm}[H]
+	        \caption{My Binary Search Algorithm}
+	        \textbf{Input:} sorted array A (indexed from 1), search item x \\
+	        \textbf{Output:} index into A of item x if found, zero otherwise
+	        \begin{algorithmic}[1]
+	        \Function {Binary-Search}{$x$, $A$}
+	            \State $i = 1$ \Comment{lower search bound} \label{alg:init}
+	            \State $j =$ len$(A)$ \Comment{upper search bound}
+	            \While{$i < j$}   \Comment{while places remain to be checked} \label{alg:check}
+	                \State $m = \lfloor(i+j)/2\rfloor$ \Comment{assign the midpoint}
+	                \If{$x = A[m]$} 
+	                     \State $loc = i$
+	                     \State {\Return {loc}}
+	                \EndIf
+	                \If{$x > A[m]$}  \label{a2:ifcheck}
+	                     \State $i = m+1$        \Comment{increase lower to mid}
+	                \Else \label{a2:else}
+	                    \State $j = m$          \Comment{decrease upper to mid}
+	                \EndIf
+	            \EndWhile
+	            \If {$x = A[i]$}  \label{a2:eqcheck}
+	                \State $loc = i$
+		 \Else 
+		 	\State $loc = 0$
+		\EndIf
+	            \State {\Return{loc}}
+	    \EndFunction
+	    \end{algorithmic}
+	    \end{algorithm}
+
+Your writeup goes here.  You can use labels and references, such as note the initialization in line \ref{alg:init}, and the while-check in line \ref{alg:check}. \\
+
+3 lines have been added from line6 to line8 which can improve the runtime. The tightest asymptotic representation doesn't change, still $\Theta{\log n}$ but if the middle point equals to the value we are searching for, we can drump out of the while loop quicker than orginal pseudocode.\\
+\textbf{Conclusions}: both $\Theta log(n)$\\ 
+ 
+
+\begin{proposition}{3}
+\end{proposition}
+\setlength{\parindent}{0pt}
+\textbf{Problem Statement}: use master theorem to find the asymptotoic bounds of $T(n) = 4T(n/4) +n^2$\\
+\textbf{Assumptions}: none\\
+\textbf{Computations}: Based on master theorem,$T(n) = aT(n/b) + \Theta(n^k (log_2^n)^p)$, we know that $a = 4, b = 4, k=2, p=0$ in our case.\\
+\begin{align*}
+    a < b^k &=16 \\
+    p &= 0 \\
+    then \\
+    T(n) & = \Theta(n^k) \\
+    & = \Theta(n^2)
+\end{align*}
+\textbf{Conclusions} $T(n) = \Theta(n^2)$.
+
+
+
+\begin{proposition}{4}
+\end{proposition}
+\setlength{\parindent}{0pt}
+\textbf{Problem Statement}: use master theorem to find the asymptotic bounds of $T(n) = 3T((\frac{n}{3} + 1)+n)$ \\
+\textbf{Assumptions}: none\\
+\textbf{Computations}: let $n = m + \frac{3}{2}$
+\begin{align*}
+    T(n) &= T(m+\frac{3}{2}) \\
+    &= 3T(\frac{m}{3} + \frac{1}{2} + 1) + m +\frac{3}{2} \\
+    & = 3T(\frac{m}{3} + \frac{3}{2}) + m + \frac{3}{2}
+\end{align*}
+ Based on master theorem,$T(n) = aT(n/b) + \Theta(n^k (log_2^n)^p)$, we know that $a = 3, b = 3, k=1, p=0$ in our case.
+ \begin{align*}
+     a &= b^k = 3 \\
+     p &= 0 > -1 \\
+     T(n) &= \Theta(n^{log_b^a}log_2^{p+1}(n)) \\
+     &= \Theta(n\log(n))
+ \end{align*}
+\textbf{Conclusions}: $T(n) = \Theta(n\log(n))$\\ 
+
+\begin{proposition}{5}
+\end{proposition}
+\setlength{\parindent}{0pt}
+\textbf{Problem Statement}: although merge sort runs in $\Theta(n\log n)$ worst-case time and insertion sort runs in $\Theta(n^2)$ worst-case time, the constant factors in insertions sort can make it faster in practice for small problem sizes on many machines \\
+(a) prove that insertion sort can sort that $\frac{n}{k}$ sublists, each of length $k$ in $\Theta(nk)$ worst-case  time \\
+(b) prove how to merge the sublists in Theta(nlg(n/k)) worst-case time \\
+(c) given that the modified algorithm runs in Theta(nk + nlg(n/k)) worst-case time, what is the largest value of k as a function of n which the modified algorithm has the same running time as standard merge sort, in terms of Theta-notation \\
+(d) why would we ever do this-why not just merge sort? argue it the other way, too - what are some problems with using our modified method \\
+\textbf{Assumptions}: none\\
+\textbf{Computations}: \\
+(a) we have $\frac{n}{k}$ k-element sequences, therefore the worst-case running time for insertion sort will be $\frac{n}{k}\Theta(k^2)$. Based on linearity property, $$T(n ) = \Theta(\frac{n}{k}(k^2))\\ =\Theta(nk)$$\\
+(b) we can see this as a divide-and-conquer problem where we have m, number of sequences, and each has k units. Denote the time to solve this problem as T(m), we can use the same algorithm to solve the first half and second half of these m sequences, and combine two results together. Therefore the equation ($\Theta(mk)$ is 2-pint comparison) $$T(m) = 2T(m/2) +\Theta(mk)$$
+ Based on master theorem \\
+ \begin{align*}
+     T(m) &=\Theta(mk\log(m)) \\
+     m &= \frac{n}{k} \\
+     T(n) &= \Theta(n\log( \frac{n}{k})) 
+ \end{align*}
+ (c) we want to let $\Theta(nk+nlg(n/k))$ to be equal to $\Theta(nlg(n))$ since the $\Theta nlg(n/k)$ is asymptotically close to $\Theta(nlg(n))$, to chose largest value of k, we need to make $\Theta(nk)$ somehow close to $\Theta(nlg(n))$ as well.\\
+ Therefore, let $k=\Theta(lg n )$, we can get that
+ \begin{align*}
+     \Theta(nk+nlg(n/k)) &= \Theta(nlgn+nlg(n/lgn)) \\
+     &= \Theta(nlgn + nlgn - nlglgn) \\
+     &= \Theta(2nlgn -nlglgn) \\
+     &= \Theta(nlgn)
+ \end{align*}
+ \\
+ (d) the recursive method might take extra space then original merge sort
+\textbf{Conclusions}: the statements were proofed for (a) and (b) and (c)\\ 
+
+% --------------------------------------------------------------
+%     You don't have to mess with anything below this line.
+% --------------------------------------------------------------
+ 
+\end{document}
