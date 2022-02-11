@@ -2,6 +2,8 @@
 
 Text book: Intro to Algorithms, [link](https://ebookcentral.proquest.com/lib/jhu/detail.action?docID=3339142#)
 
+pre: elementary data structures,[my notes](https://github.com/tinghe14/COURSE-2Algorithm/blob/main/Notes%20from%20Book/10%20Elementary%20Data%20Structures_LT.pdf)
+
 ## Module 1
 
 ## Module 2
