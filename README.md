@@ -16,3 +16,7 @@ Assignments Completed in Class:
 - Analysis of algorithms - time complexity
   - finished date: Feb 8, 2022
   - [final latex](https://github.com/tinghe14/COURSE-2Algorithm/blob/main/Homework%201/algor-hw1-the14.pdf)
+
+- Proof of NP related problem
+  - finished date: Feb 21, 2022
+  - [final latex]()
