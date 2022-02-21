@@ -12,7 +12,7 @@ This course aims to teach us:
 ## Assignment
 My python code for 2022 spring Algorithm course and [study notes](https://github.com/tinghe14/COURSE-2Algorithm/blob/main/Study%20Note.md) for better understand the materail  and build knowledge graph.
 
-Assignments Completed in Class:
+Theoretical Homeworks Completed for the Class:
 - Analysis of algorithms - time complexity
   - finished date: Feb 8, 2022
   - [final latex](https://github.com/tinghe14/COURSE-2Algorithm/blob/main/Homework%201/algor-hw1-the14.pdf)
@@ -20,3 +20,6 @@ Assignments Completed in Class:
 - Proof of NP related problem
   - finished date: Feb 21, 2022
   - [final latex]()
+
+Coding Assignments Completed at Class:
+-
